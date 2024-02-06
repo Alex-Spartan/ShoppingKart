@@ -1,0 +1,33 @@
+import React from 'react';
+import SearchIcon from '@mui/icons-material/Search';
+import Badge from '@mui/material/Badge';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+const Navbar = () => {
+  return (
+    <div className='text-black'>
+      <div className=' p-6 flex justify-center'>
+        <div className='flex-1 flex flex-row items-center gap-4'>
+          <span className='cursor-pointer'>EN</span>
+          <div className='flex items-center gap-2 w-2/3'>
+            <input
+              type="text"
+              placeholder="Search"
+              className="text-black items-center border-2 border-gray-300 rounded-md w-1/2 h-8 px-2"
+            />
+            <SearchIcon />
+          </div>
+        </div>
+        <div className='flex-1 font-bold text-2xl text-center'>Vá às Compras</div>
+        <div className='flex-1 flex items-center justify-end gap-4'>
+          <a href="">REGISTER</a>
+          <a href="">SIGN IN</a>
+          <Badge badgeContent={0} color="primary">
+            <ShoppingCartIcon className='cursor-pointer' />
+          </Badge>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Navbar;
