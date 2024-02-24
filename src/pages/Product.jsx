@@ -28,8 +28,8 @@ const Product = () => {
                     <div className="mb-4">
                         <div className="mb-2">
                             <label htmlFor='size' className="mr-2">Size:</label>
-                            <select id="size" className="border p-2">
-                                <option selected value="XS">XS</option>
+                            <select defaultValue={"M"} id="size" className="border p-2">
+                                <option value="XS">XS</option>
                                 <option value="S">S</option>
                                 <option value="M">M</option>
                                 <option value="L">L</option>

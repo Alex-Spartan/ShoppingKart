@@ -2,7 +2,7 @@ import React from 'react';
 import ProductItem from './ProductItem';
 import { products } from '../data';
 
-const Products = () => {
+const Products = ({cat, sort, filters}) => {
     return (
         <div className='flex flex-wrap justify-evenly m-4'>
             {products.map((product) => (

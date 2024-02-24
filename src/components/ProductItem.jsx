@@ -7,14 +7,6 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 const ProductItem = ({ product }) => {
     return (
-        // <div className="relative m-4" >
-        //     <img className="h-72 w-60 m-auto" src={product.imageUrl} alt={product.id} />
-        //     <div className="absolute top-0 left-0 flex items-center space-x-2 p-2">
-        //         <SearchIcon />
-        //         <ShoppingCartIcon />
-        //         <FavoriteBorderIcon />
-        //     </div>
-        // </div>
         <div className="relative m-4 group group-hover:bg-white" >
             <img className="h-72 w-60 transition-opacity duration-200 ease-in-out m-auto group-hover:opacity-10" src={product.imageUrl} alt={product.id} />
             <div className="absolute top-0 left-0 right-0 bottom-0 transition-opacity duration-200 ease-in-out flex items-center justify-center space-x-2 p-2 opacity-0 group-hover:opacity-100">

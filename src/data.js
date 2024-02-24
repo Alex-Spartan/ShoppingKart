@@ -43,12 +43,12 @@ export const products = [
         title: 'Suit'
       },
       {
-        id: 5,
+        id: 6,
         imageUrl: 'https://images.bestsellerclothing.in/data/JJ/26-sep-2022/299443904_g0.jpg?width=488&height=650&mode=fill&fill=blur&format=auto',
         title: 'Suit'
       },
       {
-        id: 5,
+        id: 7,
         imageUrl: 'https://images.bestsellerclothing.in/data/JJ/26-sep-2022/299443904_g0.jpg?width=488&height=650&mode=fill&fill=blur&format=auto',
         title: 'Suit'
       },

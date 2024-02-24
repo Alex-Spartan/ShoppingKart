@@ -4,7 +4,7 @@ import Badge from '@mui/material/Badge';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 const Navbar = () => {
   return (
-    <div className='text-black'>
+    <div className='text-white'>
       <div className=' p-6 flex justify-center'>
         <div className='flex-1 flex flex-row items-center gap-4'>
           <span className='cursor-pointer'>EN</span>

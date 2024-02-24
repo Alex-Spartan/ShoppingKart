@@ -30,6 +30,10 @@ const Register = () => {
                             <label htmlFor="password" className="mb-2">Password</label>
                             <input id="password" name="password" type="password" autoComplete="current-password" required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Password" />
                         </div>
+                        <div>
+                            <label htmlFor="confirmPassword" className="mb-2">Confirm Password</label>
+                            <input id="confirmPassword" name="confirmPassword" type="confirmPassword" autoComplete="current-password" required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Confirm" />
+                        </div>
                     </div>
 
                     <div>
@@ -38,7 +42,7 @@ const Register = () => {
                                 <svg className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                     <path fillRule="evenodd" d="M5 9a2 2 0 012-2h.91l-.34-.34a1 1 0 00-.34-.11l-.09-.03L7 6l2-2 2 2 .09.03a1 1 0 00.25.11l.34.34H13a2 2 0 012 2v1h1a2 2 0 012 2v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5a2 2 0 012-2h1V9zm7-1V7l-2-2-2 2v1h4z" clipRule="evenodd" />
                                 </svg>
-                            </span>
+                            </span> 
                             Register
                         </button>
                     </div>
