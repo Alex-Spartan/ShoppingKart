@@ -11,7 +11,7 @@ const ProductList = () => {
   const location = useLocation();
   const cat = location.pathname.split('/')[2]
   const [filters, setFilters] = useState({});
-  const [sort, setSort] = useState('newest');
+  const [sort, setSort] = useState('Latest');
   
   const handleFilter = (e) => {
     const value = e.target.value;
@@ -40,7 +40,8 @@ const ProductList = () => {
                 defaultValue={1} 
                 className='rounded p-1 mr-3'
                 onChange={handleFilter}
-              >
+              > 
+                <option>Color</option>
                 <option>White</option>
                 <option>Black</option>
                 <option>Red</option>
@@ -56,6 +57,7 @@ const ProductList = () => {
                 className='rounded p-1'
                 onChange={handleFilter}
               >
+                <option>Size</option>
                 <option>XS</option>
                 <option>S</option>
                 <option>M</option>

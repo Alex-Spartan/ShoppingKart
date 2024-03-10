@@ -2,9 +2,15 @@ import React from 'react';
 import SearchIcon from '@mui/icons-material/Search';
 import Badge from '@mui/material/Badge';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { useSelector } from 'react-redux';
+
+
 const Navbar = () => {
+
+  const quantity = useSelector((state) => state.cart.quantity);
+
   return (
-    <div className='text-white'>
+    <div className='text-white bg-black'>
       <div className=' p-6 flex justify-center'>
         <div className='flex-1 flex flex-row items-center gap-4'>
           <span className='cursor-pointer'>EN</span>
@@ -21,7 +27,7 @@ const Navbar = () => {
         <div className='flex-1 flex items-center justify-end gap-4'>
           <a href="">REGISTER</a>
           <a href="">SIGN IN</a>
-          <Badge badgeContent={0} color="primary">
+          <Badge badgeContent={quantity} color="primary">
             <ShoppingCartIcon className='cursor-pointer' />
           </Badge>
         </div>

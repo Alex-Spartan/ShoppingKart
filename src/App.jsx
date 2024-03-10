@@ -1,5 +1,6 @@
+/* eslint-disable react/jsx-key */
 import { useState } from 'react'
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { RouterProvider, createBrowserRouter, Route, createRoutesFromElements } from 'react-router-dom';
 
 
 import Home from './pages/Home'
@@ -10,18 +11,19 @@ import Login from './pages/Login'
 import Cart from './pages/Cart'
 
 function App() {
-
+  const router = createBrowserRouter(
+    createRoutesFromElements([
+      <Route path="/" index element={<Home />} />,
+      <Route path="/product/:id" element={<Product />} />,
+      <Route path="/products/:category" element={<ProductList />} />,
+      <Route path="/products/" element={<ProductList />} />,
+      <Route path="/register" element={<Register />} />,
+      <Route path="/login" element={<Login />} />,
+      <Route path="/cart" element={<Cart />} />,
+    ])
+  )
   return (
-    <BrowserRouter>
-    <Routes>
-      <Route path="/" exact element={<Home />} />
-      <Route path="/product/:category" element={<ProductList />} />
-      <Route path="/product/:id" element={<Product />} />
-      <Route path="/register" element={<Register />} />
-      <Route path="/login" element={<Login />} />
-    <Route path="/cart" element={<Cart />} />
-    </Routes>
-    </BrowserRouter>
+    <RouterProvider router={router} />
   )
 }
 

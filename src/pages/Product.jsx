@@ -1,4 +1,11 @@
-import React from 'react'
+import { useEffect, useState } from 'react'
+import axios from 'axios'
+import { useLocation } from 'react-router-dom'
+import { publicRequest } from '../requestMethods'
+import { addProduct } from '../redux/cartRedux'
+import { useDispatch } from 'react-redux'
+
+
 import Navbar from '../components/Navbar'
 import Announcement from '../components/Announcement'
 import Newsletter from '../components/Newsletter'
@@ -6,6 +13,35 @@ import Footer from '../components/Footer'
 import { Add, Remove } from '@mui/icons-material'
 
 const Product = () => {
+    const location = useLocation();
+    const id = location.pathname.split("/")[2];
+    const [product, setProduct] = useState({});
+    const [quantity, setQuantity] = useState(1);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        const getProduct = async () => {
+            try {
+                const res = await publicRequest.get(`/products/find/${id}`);
+                setProduct(res.data);
+            } catch (err) {
+                console.log(err);
+            }
+        }
+        getProduct();
+    }, [id])
+
+    const handleQuantity = (type) => {
+        if (type == 'dec') {
+            quantity > 1 && setQuantity(quantity - 1)
+        } else if (type == 'inc') {
+            setQuantity(quantity + 1)
+        }
+    }
+    const handleClick = () => {
+        dispatch(addProduct({ product, quantity, price: product.price * quantity}));
+    }
+
     return (
         <div className="container">
             <Navbar />
@@ -13,45 +49,52 @@ const Product = () => {
 
             <div className="flex mb-20 justify-evenly">
                 <div className="w-1/3">
-                    <img src="https://imgs.search.brave.com/vXKiChsz6Jh8gegM9J9gqcgmaD7f87BnehN1lNzei6Y/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/ZnJlZS1waG90by9k/ZW5pbXNfMTMwMy00/NDg4LmpwZz9zaXpl/PTYyNiZleHQ9anBn" alt="" className="" />
+                    <img src={product.img} alt="" className="h-80p" />
                 </div>
 
                 <div className="w-1/3 p-4">
                     <div className="mb-4">
-                        <h1 className="text-2xl font-bold">Denim Jumpsuit</h1>
+                        <h1 className="text-2xl font-bold">{product.title}</h1>
                         <p className="text-gray-600">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, voluptatum. Quisquam, quidem. Quisquam, quidem.
-                        </p>
-                        <span className="block text-xl font-bold">$20</span>
+                            {product.desc}</p>
+                        <span className="block text-xl font-bold">${product.price}</span>
                     </div>
 
                     <div className="mb-4">
                         <div className="mb-2">
                             <label htmlFor='size' className="mr-2">Size:</label>
                             <select defaultValue={"M"} id="size" className="border p-2">
-                                <option value="XS">XS</option>
-                                <option value="S">S</option>
-                                <option value="M">M</option>
-                                <option value="L">L</option>
-                                <option value="XL">XL</option>
+                                {product.size?.map((size) => {
+                                    return (
+                                        <option key={size} value={size}>{size}</option>
+                                    )
+                                })}
                             </select>
                         </div>
 
                         <div className="mb-2 flex">
                             <label htmlFor="color" className="mr-2">Color:</label>
                             <span className='flex'>
-                                <div className="w-6 h-6 bg-black rounded-full border border-gray-300 mr-2 hover:border-white"></div>
-                                <div className="w-6 h-6 bg-blue-300 rounded-full border border-gray-300 mr-2 hover:border-black-500"></div>
-                                <div className="w-6 h-6 bg-gray-300 rounded-full border border-gray-300 mr-2 hover:border-black-500"></div>
+                                {product.color?.map((color) => {
+                                    return (
+                                        <div key={color} className={`w-6 h-6 bg-${color.toLowerCase()} rounded-full border border-gray-300 mr-2 hover:border-white`}></div>
+                                        // have to create custom colors in tailwind
+                                    )
+                                })}
                             </span>
                         </div>
                     </div>
 
                     <div className="flex items-center">
-                        <Remove />
-                        <span className="mx-1 px-2 border-2 border-blue-300 rounded">1</span>
-                        <Add />
-                        <button className="bg-gray-600 text-white px-4 py-2 rounded ml-2">Add to Cart</button>
+                        <Remove onClick={() => handleQuantity('dec')} />
+                        <span className="mx-1 px-2 border-2 border-blue-300 rounded">{quantity}</span>
+                        <Add onClick={() => handleQuantity('inc')} />
+                        <button 
+                            className="bg-gray-600 text-white px-4 py-2 rounded ml-2"
+                            onClick={handleClick}
+                        >
+                                Add to Cart
+                        </button>
                     </div>
                 </div>
             </div>
