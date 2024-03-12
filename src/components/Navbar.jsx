@@ -3,6 +3,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import Badge from '@mui/material/Badge';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 
 const Navbar = () => {
@@ -27,9 +28,11 @@ const Navbar = () => {
         <div className='flex-1 flex items-center justify-end gap-4'>
           <a href="">REGISTER</a>
           <a href="">SIGN IN</a>
-          <Badge badgeContent={quantity} color="primary">
-            <ShoppingCartIcon className='cursor-pointer' />
-          </Badge>
+          <Link to="/cart">
+            <Badge badgeContent={quantity} color="primary">
+              <ShoppingCartIcon className='cursor-pointer' />
+            </Badge>
+          </Link>
         </div>
       </div>
     </div>

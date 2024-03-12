@@ -16,6 +16,8 @@ const Product = () => {
     const location = useLocation();
     const id = location.pathname.split("/")[2];
     const [product, setProduct] = useState({});
+    const [color, setColor] = useState("White");
+    const [size, setSize] = useState("X");
     const [quantity, setQuantity] = useState(1);
     const dispatch = useDispatch();
 
@@ -39,7 +41,7 @@ const Product = () => {
         }
     }
     const handleClick = () => {
-        dispatch(addProduct({ product, quantity, price: product.price * quantity}));
+        dispatch(addProduct({ ...product, quantity, color, size}));
     }
 
     return (
