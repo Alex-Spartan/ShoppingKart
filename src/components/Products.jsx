@@ -57,7 +57,6 @@ const Products = ({ category, sort, filter }) => {
                     </div>
                 ))
                 : products
-                    .slice(0, 3)
                     .map((product) => (
                         <div className='w-1/4 p-4' key={product._id}>
                             <ProductItem product={product} />

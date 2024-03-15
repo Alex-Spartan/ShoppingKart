@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const CategoryItem = ({ item }) => {
 
@@ -8,7 +9,9 @@ const CategoryItem = ({ item }) => {
             <img className="w-full h-2/3 object-cover" src={item.imgurl} alt="image" />
             <div className="absolute top-1/2 text-center">
                 <h1 className="text-2xl mb-2 text-white">{item.title}</h1>
+                <Link to={`/products`}>
                 <button className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">SHOP NOW</button>
+                </Link>
             </div>
         </div>
     )
