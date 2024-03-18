@@ -95,7 +95,7 @@ const Product = () => {
                             className="bg-gray-600 text-white px-4 py-2 rounded ml-2"
                             onClick={handleClick}
                         >
-                                Add to Cart
+                            Add to Cart
                         </button>
                     </div>
                 </div>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
+import { publicRequest } from '../requestMethods';
 import ProductItem from './Product';
 import { products } from '../data';
-import axios from 'axios';
 
 // eslint-disable-next-line react/prop-types
 const Products = ({ category, sort, filter }) => {
@@ -13,8 +13,8 @@ const Products = ({ category, sort, filter }) => {
     useEffect(() => {
         const getProducts = async () => {
             try {
-                const res = await axios.get(category ? `http://localhost:4000/api/products?category=${category}` : "http://localhost:4000/api/products/")
-                setProducts(res.data)
+                const res = category ?  await publicRequest(`/products?category=${category}`) :  await publicRequest(`/products`)
+                
             } catch (err) {
                 console.log(err)
             }

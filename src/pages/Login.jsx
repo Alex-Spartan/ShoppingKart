@@ -54,11 +54,6 @@ const Login = () => {
 						<button type="submit" className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
 							onClick={handleClick}
 						>
-							<span className="absolute left-0 inset-y-0 flex items-center pl-3">
-								<svg className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-									<path fillRule="evenodd" d="M5 9a2 2 0 012-2h.91l-.34-.34a1 1 0 00-.34-.11l-.09-.03L7 6l2-2 2 2 .09.03a1 1 0 00.25.11l.34.34H13a2 2 0 012 2v1h1a2 2 0 012 2v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5a2 2 0 012-2h1V9zm7-1V7l-2-2-2 2v1h4z" clipRule="evenodd" />
-								</svg>
-							</span>
 							Log In
 						</button>
 						<Link className='underline'>Forgot password?</Link>
