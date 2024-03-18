@@ -26,8 +26,8 @@ const Navbar = () => {
         </div>
         <div className='flex-1 font-bold text-2xl text-center'>Vá às Compras</div>
         <div className='flex-1 flex items-center justify-end gap-4'>
-          <a href="">REGISTER</a>
-          <a href="">SIGN IN</a>
+          <Link to="/register">REGISTER</Link>
+          <Link to="/login">SIGN IN</Link>
           <Link to="/cart">
             <Badge badgeContent={quantity} color="primary">
               <ShoppingCartIcon className='cursor-pointer' />

@@ -5,7 +5,6 @@ import axios from 'axios';
 
 // eslint-disable-next-line react/prop-types
 const Products = ({ category, sort, filter }) => {
-    console.log(category, sort, filter)
     const [products, setProducts] = useState([]);
     const [filteredProducts, setFilteredProducts] = useState([]);
 
@@ -15,7 +14,6 @@ const Products = ({ category, sort, filter }) => {
         const getProducts = async () => {
             try {
                 const res = await axios.get(category ? `http://localhost:4000/api/products?category=${category}` : "http://localhost:4000/api/products/")
-                console.log(res.data)
                 setProducts(res.data)
             } catch (err) {
                 console.log(err)

@@ -5,7 +5,6 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 const Slider = () => {
   const [slideIndex, setSlideIndex] = useState(0);
   const handleClick = (direction) => {
-    console.log(direction, slideIndex)
     if (direction === 'left') {
       setSlideIndex(slideIndex > 0 ? slideIndex - 1 : 2);
     } else {
