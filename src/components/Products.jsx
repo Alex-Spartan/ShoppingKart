@@ -14,7 +14,7 @@ const Products = ({ category, sort, filter }) => {
         const getProducts = async () => {
             try {
                 const res = category ?  await publicRequest(`/products?category=${category}`) :  await publicRequest(`/products`)
-                
+                setProducts(res.data);
             } catch (err) {
                 console.log(err)
             }

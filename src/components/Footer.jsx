@@ -4,13 +4,13 @@ const Footer = () => {
     return (
         <footer className="bg-gray-600  text-white p-6">
             <div className="container mx-auto flex justify-evenly">
-                <section>
+                <section className='w-1/2 ppx-4'> 
                     <h2 className="font-bold text-lg mb-2">Vá às Compras</h2>
                     <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium consectetur natus laborum repudiandae quis porro laudantium placeat tenetur debitis cupiditate reiciendis illo nisi sunt voluptatem quod, et dignissimos deserunt dolorem?</p>
                 </section>
-                <section>
-                    <h2 className="font-bold text-lg mb-2">Useful Links</h2>
-                    <div className='flex space-x-3'>
+                <section className='w-1/2 px-4'>
+                    <h2 className="font-bold text-lg text-center mb-2">Useful Links</h2>
+                    <div className='flex justify-evenly space-x-3'>
                         <ul className="space-y-1">
                             <li>Link 1</li>
                             <li>Link 2</li>

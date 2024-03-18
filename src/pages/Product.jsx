@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import axios from 'axios'
 import { useLocation } from 'react-router-dom'
 import { publicRequest } from '../requestMethods'
 import { addProduct } from '../redux/cartRedux'
@@ -20,6 +19,10 @@ const Product = () => {
     const [size, setSize] = useState("X");
     const [quantity, setQuantity] = useState(1);
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+      }, []);
 
     useEffect(() => {
         const getProduct = async () => {
