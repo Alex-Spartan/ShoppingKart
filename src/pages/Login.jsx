@@ -57,7 +57,7 @@ const Login = () => {
 							Log In
 						</button>
 						<Link className='underline'>Forgot password?</Link>
-						<Link className='p-6 underline'>Create new account</Link>
+						<Link to="/register" className='p-6 underline'>Create new account</Link>
 					</div>
 				</form>
 			</div>

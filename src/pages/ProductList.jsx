@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import Navbar from '../components/Navbar'
 import Announcement from '../components/Announcement'
@@ -13,6 +13,12 @@ const ProductList = () => {
   const [filters, setFilters] = useState({});
   const [sort, setSort] = useState('Latest');
   
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+
   const handleFilter = (e) => {
     const value = e.target.value;
     setFilters({

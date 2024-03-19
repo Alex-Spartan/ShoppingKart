@@ -20,7 +20,10 @@ const Register = () => {
       const user = await res.data;
     } catch (err) {
       if (err.response.data.error && err.response.data.error == 'User already exists') {
-        navigate('/login')
+        setTimeout(() => {
+          navigate('/login')
+        }, 1000)
+        alert('User already exists')
       }
     }
   }

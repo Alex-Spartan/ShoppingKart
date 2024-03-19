@@ -10,7 +10,7 @@ export default {
         '80p': '80%',
       },
       backgroundColor: {
-        'light-black': 'rgb(26, 25, 25)'
+        'background-black': '#1a1919'
       }
     },
   },

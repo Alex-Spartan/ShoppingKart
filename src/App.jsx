@@ -1,5 +1,4 @@
 /* eslint-disable react/jsx-key */
-import { useState } from 'react'
 import { RouterProvider, createBrowserRouter, Route, createRoutesFromElements, Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
@@ -14,6 +13,7 @@ import Success from './pages/Success';
 function App() {
 
   const user = useSelector(state => state.user.currentUser);
+  
 
   const router = createBrowserRouter(
     createRoutesFromElements([
@@ -23,9 +23,10 @@ function App() {
       <Route path="/products/" element={<ProductList />} />,
       <Route path="/register" element={ user ? <Navigate to="/" /> : <Register/>} />,
       
-      <Route path="/login" element={<Login />} />,
+      <Route path="/login" element={user ? <Navigate to="/" /> : <Login/>} />,
       <Route path="/cart" element={<Cart />} />,
       <Route path="/success" element={<Success />} />,
+      //add contact form and make mobile responsive
     ])
   )
   return (
