@@ -47,7 +47,7 @@ const Cart = () => {
         </h2>
         <ul className="py-8">
           {cart.products.map((cartItem) => (
-            <li key={cartItem._id} className="flex border-gray-700 w-80p">
+            <li key={cartItem._id} className="flex border-gray-700 w-[80%]">
               <div className="flex-1 mx-5 p-5">
                 <img
                   className="w-80"

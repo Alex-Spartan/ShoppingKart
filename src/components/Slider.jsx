@@ -23,7 +23,7 @@ const Slider = () => {
 
         
         <div
-          className='flex-1 flex h-80p w-screen bg-blue-200'
+          className='flex-1 flex h-[80%] w-screen bg-blue-200'
         >
 
 
@@ -31,7 +31,7 @@ const Slider = () => {
             <img
               src='https://cdn.shopify.com/s/files/1/1899/4221/files/The_Ultimate_Guide_to_Fashion_Photography_for_Your_E-Commerce_Lookbook_Part_1_9_-min.png?v=1684212563'
               alt='image1'
-              className='h-80p bg-no-repeat' />
+              className='h-[80%] bg-no-repeat' />
           </div>
           <div className='flex-1 p-14'>
             <h1 className='text-6xl mx-4 my-12'>Summer Sale</h1>
@@ -42,13 +42,13 @@ const Slider = () => {
         </div>
 
         
-        <div className='flex-1 flex h-80p w-screen bg-pink-200'>
+        <div className='flex-1 flex h-[80%] w-screen bg-pink-200'>
 
           <div className='flex-1 h-screen'>
             <img
               src='https://images.squarespace-cdn.com/content/v1/6418ab1372991c5b4e9e5a14/1693514630024-GGEIJ7PG7QJ1FIS0735Y/MANTRA_-249.jpg?format=2500w'
               alt='image1'
-              className='h-80p bg-no-repeat object-cover' />
+              className='h-[80%] bg-no-repeat object-cover' />
           </div>
           <div className='flex-1 p-14'>
             <h1 className='text-6xl mx-4 my-12'>Summer Sale</h1>
@@ -59,13 +59,13 @@ const Slider = () => {
         </div>
 
         
-        <div className='flex-1 flex h-80p w-screen bg-orange-200'>
+        <div className='flex-1 flex h-[80%] w-screen bg-orange-200'>
 
           <div className='flex-1 h-screen'>
             <img
               src='https://www.hdwallpapers.in/download/cute_smiling_of_girl_model_with_white_top_in_white_background_hd_girl-1920x1080.jpg'
               alt='image1'
-              className='h-80p bg-no-repeat object-cover' />
+              className='h-[80%] bg-no-repeat object-cover' />
           </div>
           <div className='flex-1 p-14'>
             <h1 className='text-6xl mx-4 my-12'>Summer Sale</h1>

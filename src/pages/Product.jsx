@@ -54,7 +54,7 @@ const Product = () => {
 
             <div className="flex mb-20 justify-evenly">
                 <div className="w-1/3">
-                    <img src={product.img} alt="" className="h-80p" />
+                    <img src={product.img} alt="" className="h-[80%]" />
                 </div>
 
                 <div className="w-1/3 p-4">
