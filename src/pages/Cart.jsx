@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import StripeCheckout from "react-stripe-checkout";
 import { publicRequest } from "../requestMethods";
 import { useNavigate } from "react-router-dom";
@@ -8,13 +8,15 @@ import Navbar from "../components/Navbar";
 import Announcement from "../components/Announcement";
 import Footer from "../components/Footer";
 import { Add, Remove } from "@mui/icons-material";
+import { decrementQuantity, incrementQuantity } from "../redux/cartRedux";
 
 const KEY = import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY;
 
 const Cart = () => {
-  const cart = useSelector((state) => state.cart)
+  const cart = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
   const [stripeToken, setStripeToken] = useState(null);
-  let history = useNavigate();
+  let router = useNavigate();
 
   const onToken = (token) => {
     setStripeToken(token);
@@ -24,61 +26,97 @@ const Cart = () => {
     const makeRequest = async () => {
       try {
         const res = await publicRequest.post("checkout/payment", {
-        tokenId: stripeToken.id,
-        amount: cart.total * 100,
-      });
-      history.push("/success", {data: res.data})
+          tokenId: stripeToken.id,
+          amount: cart.total * 100,
+        });
+        router.push("/success", { data: res.data });
       } catch (err) {
         console.log(err);
       }
-    }
+    };
     if (stripeToken) {
       makeRequest();
     }
-  }, [stripeToken, cart.total])
+  }, [stripeToken, cart.total]);
 
   return (
-    <div>
+    <div className="min-h-screen">
       <Navbar />
       <Announcement />
-      <div className="bg-gray-100 rounded shadow-md">
-        <h2 className="text-2xl font-bold text-center py-8 border-b border-gray-200">
-          Cart
+      <div className=" bg-gray-900 p-4 md:p-6 text-white">
+        <h2 className="text-2xl md:text-3xl font-semibold mb-6">
+          Shopping Cart
         </h2>
-        <ul className="py-8">
-          {cart.products.map((cartItem) => (
-            <li key={cartItem._id} className="flex border-gray-700 w-[80%]">
-              <div className="flex-1 mx-5 p-5">
-                <img
-                  className="w-80"
-                  src={cartItem.img}
-                  alt={cartItem.title}
-                />
-              </div>
-              <div className="ProductDetails flex-1 flex justify-between p-5">
-                <div className="text-xl my-auto">
-                  <p className="mb-6"><b>Product:</b> Hakura Shoes</p>
-                  <p className="mb-6"><b>ID:</b>{cartItem._id.slice(0, 6)}</p>
-                  <div className={`bg-${cartItem.color}-600 w-6 h-6 rounded-full mb-6`}></div>
-                  <p><b>Size:</b>{cartItem.size}</p>
-                </div>
-                <div className="my-auto ">
-                  <div className="flex">
-                    <Add />
-                    <p className="mb-5 text-2xl">{cartItem.quantity}</p>
-                    <Remove />
-                  </div>
-                  <p className="text-3xl">${cartItem.price * cartItem.quantity}</p>
-                </div>
-              </div>
-              <div className="flex-1"></div>
-            </li>
-          ))}
-        </ul>
-        <div className="flex justify-end items-center p-4 border-t border-gray-200">
-          <span className="text-gray-600 mr-2">Total:</span>
-          <span className="font-bold text-green-500">${cart.total}</span>
+        <div className="min-h-[40vh]">
+          <div className="bg-gray-800 p-4 rounded-lg shadow-lg overflow-x-auto">
+            {cart.products.length > 0 ? (
+              <table className="w-full text-left text-sm md:text-base">
+                <thead>
+                  <tr className="border-b border-gray-700">
+                    <th className="p-2">Image</th>
+                    <th className="p-2">Product</th>
+                    <th className="p-2">Size</th>
+                    <th className="p-2">Color</th>
+                    <th className="p-2">Quantity</th>
+                    <th className="p-2">Price</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {cart.products.map((item) => (
+                    <tr key={item._id} className="border-b border-gray-700">
+                      <td className="p-2">
+                        <img
+                          src={item.img}
+                          alt={item.name}
+                          className="w-16 h-16 object-cover rounded"
+                        />
+                      </td>
+                      <td className="p-2 max-w-[120px] truncate">
+                        {item.title}
+                      </td>
+                      <td className="p-2">{item.size}</td>
+                      <td className="p-2">
+                        <span
+                          className="w-5 h-5 inline-block rounded-full border border-white"
+                          style={{ backgroundColor: item.color }}
+                        ></span>
+                      </td>
+                      <td className="p-2">
+                        <div className="flex items-center">
+                          <button
+                            onClick={() =>
+                              dispatch(decrementQuantity(item._id))
+                            }
+                            className="bg-gray-600 p-1 rounded-md hover:bg-gray-500"
+                          >
+                            <Remove fontSize="small" />
+                          </button>
+                          <span className="px-2 md:px-3">{item.quantity}</span>
+                          <button
+                            onClick={() =>
+                              dispatch(incrementQuantity(item._id))
+                            }
+                            className="bg-gray-600 p-1 rounded-md hover:bg-gray-500"
+                          >
+                            <Add fontSize="small" />
+                          </button>
+                        </div>
+                      </td>
+                      <td className="p-2">${item.price * item.quantity}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            ) : (
+              <p className="text-gray-400">Your cart is empty.</p>
+            )}
+          </div>
+        </div>
 
+        <div className="mt-6 flex flex-col md:flex-row justify-between items-center gap-4">
+          <h3 className="text-xl md:text-2xl">
+            Total: ${cart.total.toFixed(2)}
+          </h3>
           <StripeCheckout
             name="ShoppingKart"
             image="https://avatars.githubusercontent.com/u/74079332?v=4"
@@ -89,14 +127,12 @@ const Cart = () => {
             token={onToken}
             stripeKey={KEY}
           >
-
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-4">
+            <button className="bg-purple-500 px-6 py-3 rounded-md hover:bg-purple-600 w-full md:w-auto">
               Checkout
             </button>
           </StripeCheckout>
         </div>
       </div>
-
       <Footer />
     </div>
   );
