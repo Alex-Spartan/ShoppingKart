@@ -22,6 +22,9 @@ const Cart = () => {
     setStripeToken(token);
   };
 
+  const stripeDisable = cart.products.length === 0;
+  const stripeDisabledClass = stripeDisable ? "opacity-50 cursor-not-allowed" : "";
+
   useEffect(() => {
     const makeRequest = async () => {
       try {
@@ -127,7 +130,7 @@ const Cart = () => {
             token={onToken}
             stripeKey={KEY}
           >
-            <button className="bg-purple-500 px-6 py-3 rounded-md hover:bg-purple-600 w-full md:w-auto">
+            <button className={`bg-purple-500 px-6 py-3 rounded-md hover:bg-purple-600 w-full md:w-auto ${stripeDisabledClass}`} disabled={stripeDisable}>
               Checkout
             </button>
           </StripeCheckout>

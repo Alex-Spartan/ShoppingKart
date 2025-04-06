@@ -19,6 +19,21 @@ const Login = () => {
 		}
     navigate("/");
   };
+  const handleLogin = async () => {
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const { displayName, email, photoURL, uid } = result.user;
+
+      // Send user to backend
+      await axios.post("http://localhost:5000/api/users", {
+        name: displayName,
+        email,
+        avatar: photoURL,
+        firebaseUid: uid,
+      });
+    } catch (error) {
+      console.error("Firebase login error", error);
+    }
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-gray-900 p-4">
