@@ -3,8 +3,17 @@ import { publicRequest } from "../requestMethods";
 
 import { useNavigate } from "react-router-dom";
 import { Eye, EyeOff } from "lucide-react";
-import { login } from "../redux/apiCalls";
+import GoogleIcon from "@mui/icons-material/Google";
+import { login, register } from "../redux/apiCalls";
 import { useDispatch, useSelector } from "react-redux";
+import {
+  createUserWithEmailAndPassword,
+  deleteUser,
+  signInWithPopup,
+  signOut,
+  updateProfile,
+} from "firebase/auth";
+import { auth, provider } from "../utils/firebase";
 
 const Register = () => {
   const [username, setUsername] = useState("");
@@ -13,27 +22,46 @@ const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const {isFetching, error} = useSelector((state) => state.user);
+  const { currentUser, isFetching, error } = useSelector((state) => state.user);
 
-  const handleSubmit = async (e) => {
+  
+  const handleGoogleLogin = async () => {
+    try {
+      const result = await signInWithPopup(auth, provider);
+
+      // Send user to backend
+      const res = await login(dispatch, result.user);
+      if (res.auth) {
+        localStorage.setItem("token", res.token);
+        navigate("/");
+      } else {
+        alert(res.message);
+      }
+    } catch (error) {
+      console.error("Google login error", error);
+    }
+  };
+
+  const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      const res = await publicRequest.post("/auth/register", {
-        username,
+      const userCred = await createUserWithEmailAndPassword(
+        auth,
         email,
-        password,
-      });
-      if (res.status === 201) {
-        await login(dispatch, { username, password });
+        password
+      );
+      const user = userCred.user;
+      await updateProfile(user, { displayName: username });
+      const res = await register(dispatch, { ...user, username });
+
+      if (res.auth) {
+        localStorage.setItem("token", res.token);
+        navigate("/");
+      } else {
+        console.log(res.message);
       }
     } catch (err) {
-      if (
-        err.response.data.error &&
-        err.response.data.error == "User already exists"
-      ) {
-        alert("User already exists");
-        navigate("/login");
-      }
+      console.log(err);
     }
   };
 
@@ -48,7 +76,10 @@ const Register = () => {
         </div>
 
         {/* Right Side - Form Section */}
-        <form className="w-full md:w-1/2 p-8 text-white" onSubmit={handleSubmit}>
+        <form
+          className="w-full md:w-1/2 p-8 text-white"
+          onSubmit={handleRegister}
+        >
           <h2 className="text-2xl font-semibold">Create an account</h2>
           <p className="mt-2 text-gray-400">
             Already have an account?{" "}
@@ -106,8 +137,21 @@ const Register = () => {
             </label>
           </div>
 
-          <button type="submit" disabled={isFetching} className="mt-4 w-full p-3 bg-purple-500 rounded-md hover:bg-purple-600">
+          <button
+            type="submit"
+            disabled={isFetching}
+            className="mt-4 w-full p-3 bg-purple-500 rounded-md hover:bg-purple-600"
+          >
             Create Account
+          </button>
+          <div className="text-center mt-3 text-xl">OR</div>
+          <button
+            type="button"
+            onClick={handleGoogleLogin}
+            className="mt-4 w-full p-3 bg-blue-500 rounded-md hover:bg-blue-600 flex items-center justify-center"
+          >
+            <GoogleIcon className="mr-2" />
+            Log in with Google
           </button>
         </form>
       </div>

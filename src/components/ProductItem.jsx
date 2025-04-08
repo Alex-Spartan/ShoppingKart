@@ -9,7 +9,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 const ProductItem = ({ product }) => {
   const cart = useSelector((state) => state.cart);
-  console.log(cart.products);
+  // console.log(cart.products);
   const dispatch = useDispatch();
   const handleClick = () => {
     const existingProduct = cart.products.find(

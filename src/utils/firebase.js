@@ -1,7 +1,8 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
+
 const firebaseConfig = {
-  apiKey: import.meta.envVITE_.Firebase_API_KEY,
+  apiKey: import.meta.env.VITE_Firebase_API_KEY,
   authDomain: import.meta.env.VITE_Firebase_AUTH_DOMAIN,
   projectId: import.meta.env.VITE_Firebase_PROJECTID,
   storageBucket: import.meta.env.VITE_Firebase_STORAGE_BUCKET,
