@@ -14,6 +14,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth, provider } from "../utils/firebase";
+import toast from "react-hot-toast";
 
 const Register = () => {
   const [username, setUsername] = useState("");
@@ -33,11 +34,13 @@ const Register = () => {
       const res = await login(dispatch, result.user);
       if (res.auth) {
         localStorage.setItem("token", res.token);
+        toast.success("Registered successfully!");
         navigate("/");
       } else {
         alert(res.message);
       }
     } catch (error) {
+      toast.error("Google login failed. Please try again.");
       console.error("Google login error", error);
     }
   };
@@ -56,11 +59,14 @@ const Register = () => {
 
       if (res.auth) {
         localStorage.setItem("token", res.token);
+        toast.success("Registered successfully!");
         navigate("/");
       } else {
+        toast.error(res.message);
         console.log(res.message);
       }
     } catch (err) {
+      toast.error("Registration failed. Please try again.");
       console.log(err);
     }
   };

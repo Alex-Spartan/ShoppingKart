@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { auth, provider } from "../utils/firebase";
 import GoogleIcon from "@mui/icons-material/Google";
+import toast from "react-hot-toast";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -20,6 +21,7 @@ const Login = () => {
       const res = await login(dispatch, result.user);
       if (res.auth) {
         localStorage.setItem("token", res.token);
+        toast.success("Login successful");
         navigate("/");
       } else {
         alert(res.message);
@@ -37,6 +39,7 @@ const Login = () => {
       const res = await login(dispatch, userCred.user);
       if (res.auth) {
         localStorage.setItem("token", res.token);
+        toast.success("Login successful");
         navigate("/");
       } else {
         alert(res.message);

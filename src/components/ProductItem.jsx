@@ -6,6 +6,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { useSelector, useDispatch } from "react-redux";
+import toast from "react-hot-toast";
 
 const ProductItem = ({ product }) => {
   const cart = useSelector((state) => state.cart);
@@ -30,20 +31,30 @@ const ProductItem = ({ product }) => {
         })
       );
     }
+    toast.success("Product added to cart");
   };
   return (
-    <div key={product._id} className="bg-gray-800 p-4 rounded-lg shadow-md">
-      <Link to={`/product/${product._id}`} className="relative block">
-        <img
-          src={product.img}
-          alt={product.name}
-          className="w-60 h-48 object-cover rounded"
-        />
-        <h3 className="mt-2 text-lg font-semibold">{product.name}</h3>
-        <p className="text-purple-400 text-sm">${product.price}</p>
+    <div
+      key={product._id}
+      className="bg-white dark:bg-gray-900 p-5 rounded-2xl shadow-md hover:shadow-xl transition-shadow w-full max-w-[320px] mx-auto"
+    >
+      <Link to={`/product/${product._id}`} className="block group">
+        <div className="relative overflow-hidden rounded-xl">
+          <img
+            src={product.img}
+            alt={product.name}
+            className="w-full h-[320px] object-cover transition-transform duration-300 group-hover:scale-105"
+          />
+        </div>
+        <h3 className="mt-4 text-lg font-semibold text-gray-900 dark:text-white group-hover:underline">
+          {product.name}
+        </h3>
+        <p className="text-purple-600 dark:text-purple-400 font-medium mt-1 text-md">
+          ${product.price.toLocaleString()}
+        </p>
       </Link>
       <button
-        className="mt-3 w-full bg-purple-500 p-2 rounded-md hover:bg-purple-600"
+        className="mt-5 w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 rounded-lg transition"
         onClick={handleClick}
       >
         Add to Cart

@@ -2,17 +2,17 @@ export const categories = [
     {
         "id": 1,
         "imgurl": "https://i.ebayimg.com/images/g/Yl8AAOSw1PtiHHzQ/s-l1200.jpg",
-        "title": "Elegant Evening Gown"
+        "title": "Women's Dresses"
     },
     {
         "id": 2,
         "imgurl": "https://cdn.shopify.com/s/files/1/0162/2116/files/Casual_street_style_looks_for_men_2b97925f-744a-4802-8ebc-593ff5947772.jpg?v=1569911205",
-        "title": "Casual Street Style"
+        "title": "Men's Clothing"
     },
     {
         "id": 3,
         "imgurl": "https://i.pinimg.com/736x/93/52/49/9352498d67ca0b51fb6e55cc2339bdd4.jpg",
-        "title": "Business Attire"
+        "title": "Popular"
     },
 ];
 
@@ -53,3 +53,21 @@ export const products = [
         title: 'Suit'
       },
 ];
+
+export const testimonials = [
+      {
+        name: "Riya M.",
+        review: "Absolutely loved the hoodie I got! Quality’s top-notch and delivery was quick.",
+        image: "https://i.pravatar.cc/100?img=1",
+      },
+      {
+        name: "Aditya S.",
+        review: "Great collection. The checkout experience was super smooth too.",
+        image: "https://i.pravatar.cc/100?img=2",
+      },
+      {
+        name: "Karan P.",
+        review: "The shirt fits perfectly and looks just like the photos!",
+        image: "https://i.pravatar.cc/100?img=3",
+      },
+    ]

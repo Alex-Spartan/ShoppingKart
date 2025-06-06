@@ -10,7 +10,6 @@ export const login = async (dispatch, user) => {
             firebaseUid: user.uid,
             avatar: user.photoURL || ""
         });
-        console.log(res.data);
         dispatch(loginSuccess(res.data.user));
         return { auth: true, message: "Authentication successful", token: res.data.token };
     } catch (err) {

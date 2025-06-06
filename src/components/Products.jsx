@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { publicRequest } from "../requestMethods";
 import ProductItem from "./ProductItem";
 
-const Products = ({ category, sort, filter }) => {
+const Products = ({ category, sort, filter, limit }) => {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
 
@@ -49,11 +49,19 @@ const Products = ({ category, sort, filter }) => {
 
   return (
     <>
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 align-items-center justify-items-center p-4">
-        {filteredProducts.length > 0 &&
-          filteredProducts.map((product) => (
-            <ProductItem key={product._id} product={product} />
-          ))}
+      <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-6 text-center">
+        Explore Our Latest Collection
+      </h2>
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 align-items-center justify-items-center p-4 mb-6">
+        {filteredProducts.length > 0 && limit
+          ? filteredProducts
+              .slice(0, limit)
+              .map((product) => (
+                <ProductItem key={product._id} product={product} />
+              ))
+          : filteredProducts.map((product) => (
+              <ProductItem key={product._id} product={product} />
+            ))}
       </div>
       {filteredProducts.length === 0 && (
         <div className="text-center font-bold text-xl">No products</div>
