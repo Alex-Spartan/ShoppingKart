@@ -17,7 +17,7 @@ const Home = () => {
       <Slider />
       <Categories />
       <Deals />
-      <Products limit={8} />
+      <Products limit={8} header />
       <Testimonials />
       <Newsletter />
       <Footer />

@@ -10,7 +10,6 @@ import toast from "react-hot-toast";
 
 const ProductItem = ({ product }) => {
   const cart = useSelector((state) => state.cart);
-  // console.log(cart.products);
   const dispatch = useDispatch();
   const handleClick = () => {
     const existingProduct = cart.products.find(
@@ -33,6 +32,7 @@ const ProductItem = ({ product }) => {
     }
     toast.success("Product added to cart");
   };
+
   return (
     <div
       key={product._id}
@@ -42,12 +42,12 @@ const ProductItem = ({ product }) => {
         <div className="relative overflow-hidden rounded-xl">
           <img
             src={product.img}
-            alt={product.name}
+            alt={product.title}
             className="w-full h-[320px] object-cover transition-transform duration-300 group-hover:scale-105"
           />
         </div>
-        <h3 className="mt-4 text-lg font-semibold text-gray-900 dark:text-white group-hover:underline">
-          {product.name}
+        <h3 className="mt-4 text-lg font-semibold text-gray-900 dark:text-white group-hover:underline line-clamp-2">
+          {product.title}
         </h3>
         <p className="text-purple-600 dark:text-purple-400 font-medium mt-1 text-md">
           ${product.price.toLocaleString()}

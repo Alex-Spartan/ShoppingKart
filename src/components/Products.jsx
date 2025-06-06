@@ -2,8 +2,10 @@
 import { useEffect, useState } from "react";
 import { publicRequest } from "../requestMethods";
 import ProductItem from "./ProductItem";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import { Link } from "react-router-dom";
 
-const Products = ({ category, sort, filter, limit }) => {
+const Products = ({ category, sort, filter, limit, header }) => {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
 
@@ -49,9 +51,17 @@ const Products = ({ category, sort, filter, limit }) => {
 
   return (
     <>
-      <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-6 text-center">
-        Explore Our Latest Collection
-      </h2>
+      {header && (
+        <div>
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 dark:text-white mb-6 text-center">
+            Explore Our Latest Collection
+          </h2>
+          <h2 className="text-lg md:text-sm underline font-semibold text-white mb-4 text-right mr-8">
+            <Link to="/products">See more</Link>
+            <ChevronRightIcon className="inline-block -ml-1" />
+          </h2>
+        </div>
+      )}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6 align-items-center justify-items-center p-4 mb-6">
         {filteredProducts.length > 0 && limit
           ? filteredProducts

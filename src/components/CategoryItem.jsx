@@ -11,7 +11,7 @@ const CategoryItem = ({ item }) => {
             <div className='mt-8 flex flex-col'>
                 <h1 className="text-xl text-black">{item.title}</h1>
                 <Link to={`/products`}>
-                <button className="underline text-black rounded hover:bg-blue-600">SHOP NOW</button>
+                <button className="underline text-black rounded hover:scale-90">SHOP NOW</button>
                 </Link>
             </div>
         </div>

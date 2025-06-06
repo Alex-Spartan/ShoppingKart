@@ -26,7 +26,6 @@ function App() {
       <Route path="/login" element={user ? <Navigate to="/" /> : <Login/>} />,
       <Route path="/cart" element={<Cart />} />,
       <Route path="/success" element={<Success />} />,
-      //add contact form and make mobile responsive
     ])
   )
   return (

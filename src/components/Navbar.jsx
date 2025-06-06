@@ -26,7 +26,9 @@ const Navbar = () => {
           </div>
         </div>
         <div className="flex-1 flex font-bold text-xl justify-center items-center">
+          <Link to={"/"} >
           Vá às Compras
+          </Link>
         </div>
 
         {!user ? (

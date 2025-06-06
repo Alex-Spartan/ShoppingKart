@@ -14,6 +14,7 @@ const KEY = import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY;
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
+  const user = useSelector(state => state.user.currentUser);
   const dispatch = useDispatch();
   const [stripeToken, setStripeToken] = useState(null);
   let router = useNavigate();
@@ -130,7 +131,7 @@ const Cart = () => {
             token={onToken}
             stripeKey={KEY}
           >
-            <button className={`bg-purple-500 px-6 py-3 rounded-md hover:bg-purple-600 w-full md:w-auto ${stripeDisabledClass}`} disabled={stripeDisable}>
+            <button className={`bg-purple-500 px-6 py-3 rounded-md hover:bg-purple-600 w-full md:w-auto ${stripeDisabledClass}`} disabled={stripeDisable || user === null}>
               Checkout
             </button>
           </StripeCheckout>

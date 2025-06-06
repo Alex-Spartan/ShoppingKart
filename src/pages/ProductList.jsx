@@ -33,9 +33,6 @@ const ProductList = () => {
       <Announcement />
       <div className="min-h-screen bg-gray-900 text-white p-6">
         <div className="flex flex-col md:flex-row justify-between md:justify-around text-md font-bold">
-          <h1 className="text-3xl font-semibold text-center mb-6">
-            Our Products
-          </h1>
           <div className="flex flex-col md:flex-row md:gap-8">
             <div className="flex justify-between mb-4 items-center gap-1">
               <div>Category:</div>
@@ -47,9 +44,11 @@ const ProductList = () => {
                 className="bg-gray-700 p-2 rounded-md"
               >
                 <option value="all">All Categories</option>
-                <option value="shirts">Shirts</option>
-                <option value="pants">Pants</option>
-                <option value="hoodies">Hoodies</option>
+                <option value="men">Men&apos;s</option>
+                <option value="women">Women&apos;s</option>
+                <option value="trending">Trending</option>
+                <option value="popular">Popular</option>
+
               </select>
             </div>
             <div className="flex justify-between mb-4 items-center gap-1">

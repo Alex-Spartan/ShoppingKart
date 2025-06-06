@@ -13,7 +13,7 @@ const Product = () => {
   const id = location.pathname.split("/")[2];
   const [product, setProduct] = useState({});
   const [color, setColor] = useState("White");
-  const [size, setSize] = useState("M");
+  const [size, setSize] = useState("S");
   const [selectedSize, setSelectedSize] = useState(null);
   const [selectedColor, setSelectedColor] = useState(null);
   const [quantity, setQuantity] = useState(1);
@@ -46,6 +46,25 @@ const Product = () => {
     dispatch(addProduct({ ...product, quantity, color, size }));
   };
 
+    const colorCodes = {
+    black: "#000000",
+    beige: "#F5F5DC",
+    blue: "#1E90FF",
+    brown: "#8B4513",
+    charcoal: "#36454F",
+    gold: "#FFD700",
+    green: "#228B22",
+    grey: "#808080",
+    navy: "#000080",
+    orange: "#FFA500",
+    pink: "#FF69B4",
+    purple: "#800080",
+    red: "#FF0000",
+    "sky blue": "#87CEEB",
+    white: "#FFFFFF",
+    yellow: "#FFFF00"
+  };
+
   return (
     Object.keys(product).length > 0 && (
       <>
@@ -73,7 +92,7 @@ const Product = () => {
                   {product.color.map((c) => (
                     <button
                       key={c}
-                      className={`w-9 h-9 rounded-full border-2 border-white cursor-pointer bg-${c.toLowerCase()}-500 ${
+                      className={`w-9 h-9 rounded-full border-2 border-white cursor-pointer bg-${colorCodes[c]}-500 ${
                         selectedColor === c ? "ring-2 ring-purple-600" : ``
                       }`}
                       onClick={() => setSelectedColor(c)}
@@ -95,7 +114,7 @@ const Product = () => {
                       }`}
                       onClick={() => setSelectedSize(size)}
                     >
-                      {size}
+                      {size.toUpperCase()}
                     </button>
                   ))}
                 </div>
