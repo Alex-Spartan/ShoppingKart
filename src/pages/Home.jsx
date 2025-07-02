@@ -1,4 +1,4 @@
-import React from 'react';
+import { useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Announcement from '../components/Announcement';
 import Slider from '../components/Slider';
@@ -8,8 +8,13 @@ import Newsletter from '../components/Newsletter';
 import Footer from '../components/Footer';
 import Deals from '../components/Deals';
 import Testimonials from '../components/Testimonials';
+import toast from 'react-hot-toast';
 
 const Home = () => {
+
+  useEffect(() => {
+    toast.error("The backend might be down. Wait for 1 min to let it start")
+  }, [])
   return (
     <div className='bg-background-black'>
       <Announcement />
