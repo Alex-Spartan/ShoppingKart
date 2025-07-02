@@ -13,7 +13,14 @@ import toast from 'react-hot-toast';
 const Home = () => {
 
   useEffect(() => {
-    toast.error("The backend might be down. Wait for 1 min to let it start")
+    toast("The backend might be asleep. Please wait 1 min for it to come back up.", {
+      duration: 5000,
+      icon: "⚠️",
+      style: {
+        background: "#f8d7da",
+        color: "#721c24",
+      },
+    })
   }, [])
   return (
     <div className='bg-background-black'>
